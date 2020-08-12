@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.core.mail import send_mail
+from django.core.files.storage import FileSystemStorage
 def trail(request):
     return HttpResponse("<h1>Project is on Air</h1>")
 def base(request):
@@ -38,3 +39,15 @@ def register(request):
         "m.akhilchowdary97@gmail.com",[Email,],fail_silently=False)
         return HttpResponse("{}<br>{}<br>{}<br>{}<br>{}<br>{}<br>{}<br>{}<br>{}<br".format(First_Name,Last_Name,Email,Phone_Number,Password,gender,date,month,year))
     return render(request,"myapp/registration.html")
+def multi(request):
+    if request.method=="POST":
+        foods=request.POST.getlist("food")
+        languages=request.POST.getlist("language")
+        return HttpResponse("<h1>{}{}<h1>".format(foods,languages))
+    return render(request,"multiselect.html")
+def img_upld(request):
+    if request.method=="POST" and request.FILES:
+        Image=request.FILES['Akh']
+        fs=FileSystemStorage()
+        fs.save(Image.name,Image)
+    return render(request,"img_upld.html")
