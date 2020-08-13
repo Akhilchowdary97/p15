@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMAGE UPLOAD</title>
+    <title> UPLOADED IMAGE</title>
 </head>
 <body>
     <form method="POST" enctype="multipart/form-data">
@@ -11,5 +11,8 @@
         Image:<input type="file" name="Akh" id="Akh">
         <input type="submit" value="Submit">
     </form>
+    {% if file_url %}
+    <img src="{{ file_url }}" alt="No Image Found" height="500" width="500">
+    {% endif %}
 </body>
 </html>
