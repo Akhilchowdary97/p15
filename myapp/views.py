@@ -46,6 +46,8 @@ def multi(request):
         return HttpResponse("<h1>{}{}<h1>".format(foods,languages))
     return render(request,"multiselect.html")
 def img_upld(request):
+    return render(request,"img_upld.html")
+def img_display(request):
     file_url=False
     if request.method=="POST" and request.FILES:
         Image=request.FILES['Akh']
@@ -53,4 +55,4 @@ def img_upld(request):
         fs=FileSystemStorage()
         file=fs.save(Image.name,Image)
         file_url=fs.url(file)
-    return render(request,"img_upld.html",context={'file_url':file_url})
+    return render(request,"img_display.html",context={'file_url':file_url})
