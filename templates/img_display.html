@@ -6,11 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    
+    {% for file_url in file_urls %}
     {% if file_url %}
-    <img src="{{ file_url }}" alt="No Image Found" height="500" width="500">
+    <img src="{{file_url}}" alt="No Image Found" height="300" width="300">
     {% endif %}
-    {
+    {% endfor %}
 
 </body>
 </html>

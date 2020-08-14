@@ -50,9 +50,11 @@ def img_upld(request):
 def img_display(request):
     file_url=False
     if request.method=="POST" and request.FILES:
-        Image=request.FILES['Akh']
-        print(Image)
-        fs=FileSystemStorage()
-        file=fs.save(Image.name,Image)
-        file_url=fs.url(file)
-    return render(request,"img_display.html",context={'file_url':file_url})
+        file_urls=[]
+        Image=request.FILES.getlist('Akh')
+        for i in Image:
+            fs=FileSystemStorage()
+            file=fs.save(i.name,i)
+            file_url=fs.url(file)
+            file_urls.append(file_url)
+    return render(request,"img_display.html",context={'file_urls':file_urls})
